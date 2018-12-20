@@ -1,3 +1,5 @@
 //rootProject.name = 'mybatis-plus-gradle-generator'
 
 include ":spring-demo"
+include 'basic'
+

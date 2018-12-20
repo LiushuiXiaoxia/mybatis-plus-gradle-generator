@@ -1,15 +1,16 @@
 package cn.mycommons.mpg
 
+import cn.mycommons.mpg.pojo.MpgPluginExtension
 import com.baomidou.mybatisplus.generator.AutoGenerator
 import com.baomidou.mybatisplus.generator.InjectionConfig
-import com.baomidou.mybatisplus.generator.config.*
+import com.baomidou.mybatisplus.generator.config.DataSourceConfig
+import com.baomidou.mybatisplus.generator.config.FileOutConfig
+import com.baomidou.mybatisplus.generator.config.TemplateConfig
 import com.baomidou.mybatisplus.generator.config.po.TableInfo
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.plugins.MavenPlugin
-import org.gradle.api.tasks.bundling.Jar
 
 class MpgPlugin implements Plugin<Project> {
 
@@ -31,21 +32,19 @@ class MpgPlugin implements Plugin<Project> {
             project.logger.error("error: " + e.message)
         }
 
-        MpgPluginExtension extension = project.extensions.create('mpg', MpgPluginExtension)
+        MpgPluginExtension extension = project.extensions.create('mpg', MpgPluginExtension, project.objects)
+
+        // project.logger.error("extension = " + extension)
         if (extension != null) {
-            createMpgTask(project)
+            createMpgTask(project, extension)
         }
     }
 
-    private void createMpgTask(Project project) {
-        // 生成sources.jar
-        def androidSourcesJar = project.tasks.create("mybats", Jar.class)
-
-        androidSourcesJar.doLast {
-
-            String JDBC_URL = "jdbc:mysql://172.16.235.208:3306/ifms?useUnicode=true&characterEncoding=utf8&useSSL=false"
-            String JDBC_USER = "root"
-            String JDBC_PASSWORD = "admin"
+    private void createMpgTask(Project project, MpgPluginExtension extension) {
+        def task = project.tasks.create("mpg")
+        task.group = 'mybatis'
+        task.doLast {
+            project.logger.error("extension = " + extension)
 
             String PROJECT_PATH = project.projectDir.path
             String MODEL_PACKAGE = "cn.mycommons.springdemo"
@@ -56,49 +55,45 @@ class MpgPlugin implements Plugin<Project> {
             AutoGenerator mpg = new AutoGenerator()
 
             // 全局配置
-            GlobalConfig gc = new GlobalConfig()
-            gc.setOutputDir(PROJECT_PATH + "/src/main/java")
-            gc.setAuthor("admin")
-            gc.setOpen(false)
-            gc.setBaseResultMap(true)
-            mpg.setGlobalConfig(gc)
+//            GlobalConfig gc = new GlobalConfig()
+//            gc.setOutputDir(PROJECT_PATH + "/src/main/java")
+//            gc.setAuthor("admin")
+//            gc.setOpen(false)
+//            gc.setBaseResultMap(true)
+            mpg.setGlobalConfig(extension.globalConfig)
 
             // 数据源配置
-            DataSourceConfig dsc = new DataSourceConfig()
-            dsc.setUrl(JDBC_URL)
-            dsc.setDriverName("com.mysql.jdbc.Driver")
-            dsc.setUsername(JDBC_USER)
-            dsc.setPassword(JDBC_PASSWORD)
+            DataSourceConfig dsc = extension.dataSourceConfig
             mpg.setDataSource(dsc)
 
             // 包配置
-            PackageConfig pc = new PackageConfig()
-            pc.setParent(MODEL_PACKAGE)
-            pc.setEntity("mybatis.entity")
-            pc.setMapper("mybatis.mapper")
-            mpg.setPackageInfo(pc)
+//            PackageConfig pc = new PackageConfig()
+//            pc.setParent(MODEL_PACKAGE)
+//            pc.setEntity("task.entity")
+//            pc.setMapper("task.mapper")
+            mpg.setPackageInfo(extension.packageConfig)
 
             // 自定义配置
             InjectionConfig cfg = new InjectionConfig() {
                 @Override
-                public void initMap() {
+                void initMap() {
                     // to do nothing
                 }
             }
-
-            // 如果模板引擎是 freemarker
-            String templatePath = "/templates/mapper.xml.ftl"
-            // 如果模板引擎是 velocity
-            // String templatePath = "/templates/mapper.xml.vm"
-
             // 自定义输出配置
             List<FileOutConfig> focList = new ArrayList<>()
             // 自定义配置会被优先输出
-            focList.add(new FileOutConfig(templatePath) {
+            focList.add(new FileOutConfig("/templates/mapper.xml.ftl") {
                 @Override
-                public String outputFile(TableInfo tableInfo) {
+                String outputFile(TableInfo tableInfo) {
+                    def xmlMapperConfig = extension.xmlMapperConfig
+
+                    if (xmlMapperConfig.path.isEmpty() || xmlMapperConfig.name.isEmpty()) {
+                        def path = project.projectDir.path + "/src/main/resources/mapper/"
+                        return path + tableInfo.getEntityName() + "Mapper.xml"
+                    }
                     // 自定义输出文件名
-                    return PROJECT_PATH + "/src/main/resources/mapper/" + tableInfo.getEntityName() + "Mapper.xml"
+                    return xmlMapperConfig.path + xmlMapperConfig.name
                 }
             })
 
@@ -117,20 +112,22 @@ class MpgPlugin implements Plugin<Project> {
             mpg.setTemplate(templateConfig)
 
             // 策略配置
-            StrategyConfig strategy = new StrategyConfig()
-            strategy.setNaming(NamingStrategy.underline_to_camel)
-            strategy.setColumnNaming(NamingStrategy.underline_to_camel)
-            strategy.setEntityLombokModel(true)
-            strategy.setRestControllerStyle(true)
-            // strategy.setSuperControllerClass("com.baomidou.ant.common.BaseController")
-            strategy.setInclude(TABLE_NAME)
-            // strategy.setSuperEntityColumns("id")
-            strategy.setLogicDeleteFieldName("is_delete")
-            strategy.setSuperEntityColumns("create_by", "create_time", "update_by", "update_time", "remark", "is_delete")
-            strategy.entityTableFieldAnnotationEnable(true)
-            strategy.setControllerMappingHyphenStyle(true)
-            strategy.setTablePrefix(TABLE_PREFIX)
-            mpg.setStrategy(strategy)
+//            StrategyConfig strategy = new StrategyConfig()
+//            strategy.setNaming(NamingStrategy.underline_to_camel)
+//            strategy.setColumnNaming(NamingStrategy.underline_to_camel)
+//            strategy.setEntityLombokModel(true)
+//            strategy.setRestControllerStyle(true)
+//            // strategy.setSuperControllerClass("com.baomidou.ant.common.BaseController")
+//            strategy.setInclude(TABLE_NAME)
+//            // strategy.setSuperEntityColumns("id")
+//            strategy.setLogicDeleteFieldName("is_delete")
+//            strategy.setSuperEntityColumns("create_by", "create_time", "update_by", "update_time", "remark", "is_delete")
+//            strategy.entityTableFieldAnnotationEnable(true)
+//            strategy.setControllerMappingHyphenStyle(true)
+//            strategy.setTablePrefix(TABLE_PREFIX)
+            extension.strategyConfig.naming = NamingStrategy.underline_to_camel
+            extension.strategyConfig.columnNaming = NamingStrategy.underline_to_camel
+            mpg.setStrategy(extension.strategyConfig)
             mpg.setTemplateEngine(new FreemarkerTemplateEngine())
             mpg.execute()
         }

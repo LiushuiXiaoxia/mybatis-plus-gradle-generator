@@ -29,6 +29,8 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-starter-web')
     compileOnly('org.projectlombok:lombok')
 
+    compile project(':basic')
+
     // db
     compile 'mysql:mysql-connector-java:5.1.36' // mysql jdbc
     compile 'com.alibaba:druid-spring-boot-starter:1.1.10'
@@ -49,5 +51,43 @@ dependencies {
 
 apply plugin: 'mpg'
 mpg {
+    enable = true
 
+    globalConfig {
+        outputDir = projectDir.path + "/src/main/java"
+        author = "Admin"
+        open = false
+        baseResultMap = true
+    }
+
+    dataSourceConfig {
+        driverName = "com.mysql.jdbc.Driver"
+        url = "jdbc:mysql://localhost:3306/mpg_test?useUnicode=true&characterEncoding=utf8&useSSL=false"
+        username = "root"
+        password = "admin"
+    }
+
+    packageConfig {
+        parent = "cn.mycommons.springdemo.mpg"
+        entity = "mybatis.entity"
+        mapper = "mybatis.mapper"
+    }
+
+    xmlMapperConfig {
+        path = projectDir.path + "/src/main/resources/mapper/"
+        name = "AppInfoMapper.xml"
+    }
+
+    strategyConfig {
+        include = ["tb_app_info"]
+        tablePrefix = ["tb_"]
+        entityLombokModel = true
+        restControllerStyle = true
+        superEntityClass = "cn.mycommons.basic.dto.BaseEntity"
+        logicDeleteFieldName = "is_delete"
+        superEntityColumns = ["create_by", "create_time", "update_by", "update_time", "remark", "is_delete"]
+        entityTableFieldAnnotationEnable(true)
+        controllerMappingHyphenStyle = true
+        superControllerClass = "cn.mycommons.basic.controller.BaseController"
+    }
 }
