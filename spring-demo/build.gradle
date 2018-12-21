@@ -4,13 +4,13 @@ buildscript {
     }
     repositories {
         maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        maven { url "https://dl.bintray.com/liushuixiaoxia/maven" }
         jcenter()
         mavenCentral()
-        maven { url "https://liushui.bintray.com/maven" }
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        // classpath("cn.mycommons:mpg:0.0.1")
+        // classpath("cn.mycommons:mpg:${VERSION_NAME}")
     }
 }
 

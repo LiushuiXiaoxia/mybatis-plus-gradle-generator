@@ -28,12 +28,12 @@ if (project.name != rootProject.name) {
         bintrayUser = BINTRAY_USER
         bintrayKey = BINTRAY_KEY
 
-        userOrg = 'liushui'
+        userOrg = 'liushuixiaoxia'
         repoName = 'maven'
 
         groupId = 'cn.mycommons'
         artifactId = 'mpg'
-        publishVersion = '0.1.1'
+        publishVersion = VERSION_NAME
 
         desc = 'Mybatis plus gradle generator plugin'
         website = 'https://github.com/LiushuiXiaoxia/mybatis-plus-gradle-generator'
