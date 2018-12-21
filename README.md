@@ -18,6 +18,7 @@ buildscript {
     }
     repositories {
         maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        maven { url "https://liushui.bintray.com/maven" }
         mavenCentral()
         jcenter()
     }
