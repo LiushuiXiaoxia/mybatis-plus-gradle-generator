@@ -1,0 +1,4 @@
+# Mybatis Plus Gradle Generator
+
+---
+
