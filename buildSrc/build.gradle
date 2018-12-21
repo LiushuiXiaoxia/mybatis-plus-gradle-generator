@@ -13,9 +13,7 @@ dependencies {
     compile gradleApi()
     compile localGroovy()
 
-    compile 'com.google.code.gson:gson:2.8.1'
     compile 'mysql:mysql-connector-java:5.1.40'
-    compile 'org.springframework.boot:spring-boot-starter-web:2.1.1.RELEASE'
     compile 'com.baomidou:mybatis-plus-boot-starter:3.0.6'
     compile 'com.baomidou:mybatis-plus:3.0.6'
 
@@ -26,7 +24,8 @@ dependencies {
 if (project.name != rootProject.name) {
     apply plugin: 'com.novoda.bintray-release'
     publish {
-        bintrayUser = 'xiaqiulei'
+        // gradle.properties
+        bintrayUser = BINTRAY_USER
         bintrayKey = BINTRAY_KEY
 
         userOrg = 'liushui'
@@ -34,7 +33,7 @@ if (project.name != rootProject.name) {
 
         groupId = 'cn.mycommons'
         artifactId = 'mpg'
-        publishVersion = "0.0.3"
+        publishVersion = '0.1.1'
 
         desc = 'Mybatis plus gradle generator plugin'
         website = 'https://github.com/LiushuiXiaoxia/mybatis-plus-gradle-generator'
