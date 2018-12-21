@@ -3,6 +3,7 @@ apply plugin: 'maven'
 
 repositories {
     maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+    jcenter()
     mavenCentral()
 }
 
@@ -20,4 +21,22 @@ dependencies {
 
     compile 'org.freemarker:freemarker:2.3.20'
     compile 'org.slf4j:slf4j-api:1.7.25'
+}
+
+if (project.name != rootProject.name) {
+    apply plugin: 'com.novoda.bintray-release'
+    publish {
+        bintrayUser = 'xiaqiulei'
+        bintrayKey = BINTRAY_KEY
+
+        userOrg = 'liushui'
+        repoName = 'maven'
+
+        groupId = 'cn.mycommons'
+        artifactId = 'mpg'
+        publishVersion = "0.0.3"
+
+        desc = 'Mybatis plus gradle generator plugin'
+        website = 'https://github.com/LiushuiXiaoxia/mybatis-plus-gradle-generator'
+    }
 }

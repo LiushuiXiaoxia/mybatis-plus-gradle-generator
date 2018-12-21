@@ -4,19 +4,20 @@ buildscript {
     }
     repositories {
         maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        jcenter()
         mavenCentral()
     }
     dependencies {
-        // classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        // classpath 'com.android.tools.build:gradle:3.1.4'
+        classpath 'com.novoda:bintray-release:0.9'
     }
 }
 
 allprojects {
-    group 'cn.mycommons.mpg'
+    group 'cn.mycommons'
     version '1.0-SNAPSHOT'
     repositories {
         maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        jcenter()
         mavenCentral()
     }
 }
