@@ -89,5 +89,12 @@ xmlMapperConfig {
 
 然后执行Gradle Task `mpg` 即可。
 
-![mpg](doc/1.png)
+![mpg](https://raw.githubusercontent.com/LiushuiXiaoxia/mybatis-plus-gradle-generator/master/doc/1.png)
 
+# 相关链接
+
+[MyBatis Plus](https://mp.baomidou.com/)
+
+[MyBatis Plus 文档](https://mp.baomidou.com/config/)
+
+[MyBatis Plus Gradle Plugin](https://github.com/LiushuiXiaoxia/mybatis-plus-gradle-generator)
