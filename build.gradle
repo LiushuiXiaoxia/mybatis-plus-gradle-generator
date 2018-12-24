@@ -1,7 +1,7 @@
 buildscript {
     ext {
         springBootVersion = '2.1.1.RELEASE'
-        VERSION_NAME = "0.1.2"
+        VERSION_NAME = "0.1.3"
     }
     repositories {
         maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
