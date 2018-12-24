@@ -11,6 +11,8 @@ import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.util.TextUtil
+import org.springframework.util.StringUtils
 
 class MpgPlugin implements Plugin<Project> {
 
@@ -84,11 +86,15 @@ class MpgPlugin implements Plugin<Project> {
             List<FileOutConfig> focList = new ArrayList<>()
             // 自定义配置会被优先输出
             focList.add(new FileOutConfig("/templates/mapper.xml.ftl") {
+
                 @Override
                 String outputFile(TableInfo tableInfo) {
                     def xmlMapperConfig = extension.xmlMapperConfig
 
-                    if (xmlMapperConfig.path.isEmpty() || xmlMapperConfig.name.isEmpty()) {
+
+                    if (xmlMapperConfig == null
+                            || StringUtils.isEmpty(xmlMapperConfig.path)
+                            || StringUtils.isEmpty(xmlMapperConfig.name)) {
                         def path = project.projectDir.path + "/src/main/resources/mapper/"
                         return path + tableInfo.getEntityName() + "Mapper.xml"
                     }

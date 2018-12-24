@@ -69,10 +69,10 @@ mpg {
         mapper = "mybatis.mapper"
     }
 
-    xmlMapperConfig {
-        path = projectDir.path + "/src/main/resources/mapper/"
-        name = "AppInfoMapper.xml"
-    }
+//    xmlMapperConfig {
+//        path = projectDir.path + "/src/main/resources/mapper/"
+//        name = "AppInfoMapper.xml"
+//    }
 
     strategyConfig {
         include = ["tb_app_info"]
