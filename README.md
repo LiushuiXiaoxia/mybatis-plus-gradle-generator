@@ -7,6 +7,8 @@
 Web开发中使用mybatis比较多，[MyBatis Plus](https://mp.baomidou.com/)是一个比较好的扩展，并且还可以自动生成代码，比较方便。
 但是MyBatis Plus 对maven比较友好，对Gradle就比较差了，现在Spring Boot也对Gradle支持比较好，在使用Gradle生成代码的时候就比较麻烦。
 
+[![Build Status](https://travis-ci.org/LiushuiXiaoxia/mybatis-plus-gradle-generator.svg?branch=master)](https://travis-ci.org/LiushuiXiaoxia/mybatis-plus-gradle-generator)
+
 # 使用姿势
 
 本插件需要结合Spring Boot项目一起使用，如下所示，首先添加插件依赖，当前版本为
