@@ -4,13 +4,13 @@ buildscript {
     }
     repositories {
         // maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
-        maven { url "https://dl.bintray.com/liushuixiaoxia/maven" }
+        // maven { url "https://dl.bintray.com/liushuixiaoxia/maven" }
         jcenter()
         mavenCentral()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        // classpath("cn.mycommons:mpg:${VERSION_NAME}")
+        classpath("cn.mycommons:mpg:${VERSION_NAME}")
     }
 }
 
@@ -30,7 +30,7 @@ dependencies {
     // db
     compile 'mysql:mysql-connector-java:5.1.36' // mysql jdbc
     compile 'com.alibaba:druid-spring-boot-starter:1.1.10'
-    compile 'com.baomidou:mybatis-plus:3.0.6'
+    compile 'com.baomidou:mybatis-plus:3.3.2'
     compile 'org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.1'
     compile 'tk.mybatis:mapper-spring-boot-starter:1.1.4'
     compile 'com.github.pagehelper:pagehelper:4.1.2'
@@ -44,46 +44,4 @@ dependencies {
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
 
-
-apply plugin: 'mpg'
-mpg {
-    enable = true
-
-    globalConfig {
-        outputDir = projectDir.path + "/src/main/java"
-        author = "Admin"
-        open = false
-        baseResultMap = true
-    }
-
-    dataSourceConfig {
-        driverName = "com.mysql.jdbc.Driver"
-        url = "jdbc:mysql://localhost:3306/mpg_test?useUnicode=true&characterEncoding=utf8&useSSL=false"
-        username = "root"
-        password = "admin"
-    }
-
-    packageConfig {
-        parent = "cn.mycommons.springdemo.mpg"
-        entity = "mybatis.entity"
-        mapper = "mybatis.mapper"
-    }
-
-//    xmlMapperConfig {
-//        path = projectDir.path + "/src/main/resources/mapper/"
-//        name = "AppInfoMapper.xml"
-//    }
-
-    strategyConfig {
-        include = ["tb_app_info"]
-        tablePrefix = ["tb_"]
-        entityLombokModel = true
-        restControllerStyle = true
-        superEntityClass = "cn.mycommons.basic.dto.BaseEntity"
-        logicDeleteFieldName = "is_delete"
-        superEntityColumns = ["create_by", "create_time", "update_by", "update_time", "remark", "is_delete"]
-        entityTableFieldAnnotationEnable(true)
-        controllerMappingHyphenStyle = true
-        superControllerClass = "cn.mycommons.basic.controller.BaseController"
-    }
-}
+apply from: 'mpg.gradle'

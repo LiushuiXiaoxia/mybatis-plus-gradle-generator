@@ -3,13 +3,13 @@
 echo Plugin build begin...
 
 
-echo "include ':spring-demo', ':basic'"> settings.gradle
+echo "include ':basic',':spring-demo'"> settings.gradle
 echo "include ':buildSrc'">> settings.gradle
 
 ./gradlew clean build :buildSrc:bintrayUpload -PdryRun=false
 ./gradlew --stop
 
-echo "include ':spring-demo', ':basic'"> settings.gradle
+echo "include ':basic',':spring-demo'"> settings.gradle
 echo "//include ':buildSrc'">> settings.gradle
 
 

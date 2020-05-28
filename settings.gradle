@@ -1,2 +1,2 @@
-include ':spring-demo', ':basic'
-//include ':buildSrc'
+include ':basic',':spring-demo'
+// include ':buildSrc'
