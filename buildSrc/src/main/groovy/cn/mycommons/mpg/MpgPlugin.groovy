@@ -14,24 +14,8 @@ import org.gradle.api.Project
 
 class MpgPlugin implements Plugin<Project> {
 
-    private String nexusUsername
-    private String nexusPassword
-
     @Override
     void apply(Project project) {
-        Properties properties = new Properties()
-
-        try {
-            def file = project.rootProject.file('local.properties')
-            if (file.exists()) {
-                properties.load(file.newDataInputStream())
-            }
-            nexusUsername = properties.getProperty("nexus_username", "")
-            nexusPassword = properties.getProperty("nexus_password", "")
-        } catch (Exception e) {
-            project.logger.error("error: " + e.message)
-        }
-
         MpgPluginExtension extension = project.extensions.create('mpg', MpgPluginExtension, project.objects)
 
         // project.logger.error("extension = " + extension)

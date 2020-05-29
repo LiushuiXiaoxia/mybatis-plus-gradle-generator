@@ -13,13 +13,13 @@ dependencies {
     compile gradleApi()
     compile localGroovy()
 
+    compile 'org.slf4j:slf4j-api:1.7.25'
     compile 'mysql:mysql-connector-java:5.1.40'
-    // compile 'com.baomidou:mybatis-plus-boot-starter:3.3.2'
     compile 'com.baomidou:mybatis-plus:3.3.2'
     compile 'com.baomidou:mybatis-plus-generator:3.3.2'
+    // compile 'com.baomidou:mybatis-plus-boot-starter:3.3.2'
 
-    compile 'org.freemarker:freemarker:2.3.20'
-    compile 'org.slf4j:slf4j-api:1.7.25'
+    compile 'org.freemarker:freemarker:2.3.30'
 }
 
 if (project.name != rootProject.name) {
