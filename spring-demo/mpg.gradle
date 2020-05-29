@@ -33,7 +33,7 @@ mpg {
         entityLombokModel = true
         restControllerStyle = true
         superEntityColumns = ["create_by", "create_time", "update_by", "update_time", "remark", "is_delete"]
-        superEntityClass = "cn.mycommons.basic.dto.BaseEntity"
+        // superEntityClass = "cn.mycommons.basic.dto.BaseEntity"
         logicDeleteFieldName = "is_delete"
         entityTableFieldAnnotationEnable(true)
         controllerMappingHyphenStyle = true
