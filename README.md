@@ -18,10 +18,9 @@ Web开发中使用mybatis比较多，[MyBatis Plus](https://mp.baomidou.com/)是
 buildscript {
     ext {
         springBootVersion = '2.1.1.RELEASE'
+        mpgVesion = ''
     }
     repositories {
-        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
-        maven { url "https://dl.bintray.com/liushuixiaoxia/maven"  }
         mavenCentral()
         jcenter()
     }
@@ -32,7 +31,7 @@ buildscript {
 }
 ```
 
-然后配置相关属性即可，本配置可以参考[MyBatis Plus 代码生成官方文档](https://mp.baomidou.com/guide/generator.html)，基本配置和官方配置一样。
+然后配置相关属性即可，本配置可以参考[MyBatis Plus 代码生成官方文档](https://mp.baomidou.com/guide/generator.html) ，基本配置和官方配置一样。
 
 示例：表名为`tb_app_info`，前缀为`tb_`，生成的entity为`AppInfo`,mapper为`AppInfoMapper.xml`。
 
@@ -71,7 +70,8 @@ mpg {
         tablePrefix = ["tb_"]
         entityLombokModel = true
         restControllerStyle = true
-        superEntityClass = "cn.mycommons.basic.dto.BaseEntity"
+        // Mybatis Plus 3.3.2 此字段有问题，暂时先屏蔽 
+        // superEntityClass = "cn.mycommons.basic.dto.BaseEntity"
         logicDeleteFieldName = "is_delete"
         superEntityColumns = ["create_by", "create_time", "update_by", "update_time", "remark", "is_delete"]
         entityTableFieldAnnotationEnable(true)

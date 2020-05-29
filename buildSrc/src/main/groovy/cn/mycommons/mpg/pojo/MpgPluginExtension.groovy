@@ -48,7 +48,6 @@ class MpgPluginExtension {
         action.execute(strategyConfig)
     }
 
-
     @Override
     String toString() {
         return "MpgPluginExtension{" +
