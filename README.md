@@ -9,6 +9,8 @@ Web开发中使用mybatis比较多，[MyBatis Plus](https://mp.baomidou.com/)是
 
 [![Build Status](https://travis-ci.org/LiushuiXiaoxia/mybatis-plus-gradle-generator.svg?branch=master)](https://travis-ci.org/LiushuiXiaoxia/mybatis-plus-gradle-generator)
 
+![Java CI with Gradle](https://github.com/LiushuiXiaoxia/mybatis-plus-gradle-generator/workflows/Java%20CI%20with%20Gradle/badge.svg)
+
 # 使用姿势
 
 本插件需要结合Spring Boot项目一起使用，如下所示，首先添加插件依赖，当前版本为
