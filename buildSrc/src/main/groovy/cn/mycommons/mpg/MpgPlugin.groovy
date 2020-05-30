@@ -18,7 +18,6 @@ class MpgPlugin implements Plugin<Project> {
     void apply(Project project) {
         MpgPluginExtension extension = project.extensions.create('mpg', MpgPluginExtension, project.objects)
 
-        // project.logger.error("extension = " + extension)
         if (extension != null) {
             createMpgTask(project, extension)
         }

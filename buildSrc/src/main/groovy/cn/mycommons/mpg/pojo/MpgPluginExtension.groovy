@@ -25,7 +25,7 @@ class MpgPluginExtension {
         dataSourceConfig = objectFactory.newInstance(DataSourceConfig)
         packageConfig = objectFactory.newInstance(PackageConfig)
         xmlMapperConfig = objectFactory.newInstance(XmlMapperConfig)
-        strategyConfig = objectFactory.newInstance(StrategyConfig)
+        strategyConfig = objectFactory.newInstance(MyStrategyConfig)
     }
 
     void globalConfig(Action<? super GlobalConfig> action) {
