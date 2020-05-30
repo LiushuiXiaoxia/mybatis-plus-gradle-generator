@@ -72,8 +72,7 @@ mpg {
         tablePrefix = ["tb_"]
         entityLombokModel = true
         restControllerStyle = true
-        // Mybatis Plus 3.3.2 此字段有问题，暂时先屏蔽 
-        // superEntityClass = "cn.mycommons.basic.dto.BaseEntity"
+        superEntityClass = "cn.mycommons.basic.dto.BaseEntity"
         logicDeleteFieldName = "is_delete"
         superEntityColumns = ["create_by", "create_time", "update_by", "update_time", "remark", "is_delete"]
         entityTableFieldAnnotationEnable(true)
