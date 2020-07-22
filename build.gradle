@@ -4,7 +4,7 @@ buildscript {
         VERSION_NAME = "0.2.2"
     }
     repositories {
-        // maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        maven { url 'https://maven.aliyun.com/repository/public/' }
         maven { url "https://dl.bintray.com/liushuixiaoxia/maven" }
         jcenter()
         mavenCentral()
@@ -18,7 +18,7 @@ allprojects {
     group 'cn.mycommons'
     version '1.0-SNAPSHOT'
     repositories {
-        // maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        maven { url 'https://maven.aliyun.com/repository/public/' }
         maven { url "https://dl.bintray.com/liushuixiaoxia/maven" }
         jcenter()
         mavenCentral()

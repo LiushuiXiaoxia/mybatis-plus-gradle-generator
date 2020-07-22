@@ -2,7 +2,7 @@ apply plugin: 'groovy'
 apply plugin: 'maven'
 
 repositories {
-    // maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+    maven { url 'https://maven.aliyun.com/repository/public/' }
     jcenter()
     mavenCentral()
 }
@@ -15,6 +15,8 @@ dependencies {
 
     compile 'org.slf4j:slf4j-api:1.7.25'
     compile 'mysql:mysql-connector-java:5.1.40'
+    // compile 'com.microsoft:sqlserver.jdbc:4.2'
+    compile 'com.microsoft.sqlserver:mssql-jdbc:8.2.2.jre8'
     compile 'com.baomidou:mybatis-plus:3.3.2'
     compile 'com.baomidou:mybatis-plus-generator:3.3.2'
     // compile 'com.baomidou:mybatis-plus-boot-starter:3.3.2'
