@@ -62,8 +62,6 @@ mpg {
         url = "jdbc:sqlserver://11122;DatabaseName=222"
         username = "111"
         password = "22"
-        dbType = com.baomidou.mybatisplus.annotation.DbType.SQL_SERVER
-        // dbType = com.baomidou.mybatisplus.annotation.DbType.SQL_SERVER2005
     }
 
     packageConfig {
