@@ -1,5 +1,10 @@
-apply plugin: 'groovy'
-apply plugin: 'maven'
+plugins {
+    id 'groovy'
+    id 'maven'
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+    id 'com.gradle.plugin-publish' version '0.14.0'
+}
 
 repositories {
     maven { url 'https://maven.aliyun.com/repository/public/' }
@@ -14,7 +19,7 @@ dependencies {
     compile localGroovy()
 
     compile 'org.slf4j:slf4j-api:1.7.25'
-    compile 'mysql:mysql-connector-java:5.1.40'
+    compile 'mysql:mysql-connector-java:8.0.21'
     compile 'com.microsoft.sqlserver:mssql-jdbc:8.2.2.jre8'
     compile 'com.baomidou:mybatis-plus:3.4.0'
     compile 'com.baomidou:mybatis-plus-generator:3.4.0'
@@ -23,20 +28,25 @@ dependencies {
 }
 
 if (project.name != rootProject.name) {
-    apply plugin: 'com.novoda.bintray-release'
-    publish {
-        // gradle.properties
-        bintrayUser = BINTRAY_USER
-        bintrayKey = BINTRAY_KEY
 
-        userOrg = 'liushuixiaoxia'
-        repoName = 'maven'
-
-        groupId = 'cn.mycommons'
-        artifactId = 'mpg'
-        publishVersion = VERSION_NAME
-
-        desc = 'Mybatis plus gradle generator plugin'
+    pluginBundle {
         website = 'https://github.com/LiushuiXiaoxia/mybatis-plus-gradle-generator'
+        vcsUrl = 'https://github.com/LiushuiXiaoxia/mybatis-plus-gradle-generator'
+        tags = ['mybatis', 'gradle plugin', 'mybatis generator plugin']
+    }
+
+    group = 'cn.mycommons'
+    // name = 'mpg'
+    version = "$VERSION_NAME"
+
+    gradlePlugin {
+        plugins {
+            greetingsPlugin {
+                id = 'cn.mycommons.mpg'
+                displayName = 'MybatisGeneratorPlugin'
+                description = 'Mybatis generator plugin'
+                implementationClass = 'cn.mycommons.mpg.MainPlugin'
+            }
+        }
     }
 }
