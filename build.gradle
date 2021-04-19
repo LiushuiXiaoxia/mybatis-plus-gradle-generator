@@ -1,12 +1,6 @@
 buildscript {
-    ext {
-        springBootVersion = '2.1.1.RELEASE'
-    }
     repositories {
-        maven { url "https://dl.bintray.com/liushuixiaoxia/maven" }
         maven { url 'https://maven.aliyun.com/repository/public/' }
-        jcenter()
-        mavenCentral()
     }
 }
 
@@ -15,8 +9,5 @@ allprojects {
     version '1.0-SNAPSHOT'
     repositories {
         maven { url 'https://maven.aliyun.com/repository/public/' }
-        maven { url "https://dl.bintray.com/liushuixiaoxia/maven" }
-        jcenter()
-        mavenCentral()
     }
 }

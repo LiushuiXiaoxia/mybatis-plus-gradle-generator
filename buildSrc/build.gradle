@@ -28,11 +28,10 @@ dependencies {
 }
 
 if (project.name != rootProject.name) {
-
     pluginBundle {
         website = 'https://github.com/LiushuiXiaoxia/mybatis-plus-gradle-generator'
         vcsUrl = 'https://github.com/LiushuiXiaoxia/mybatis-plus-gradle-generator'
-        tags = ['mybatis', 'gradle plugin', 'mybatis generator plugin']
+        tags = ['mybatis plus', 'gradle plugin', 'mybatis plus generator plugin']
     }
 
     group = 'cn.mycommons'
@@ -43,8 +42,8 @@ if (project.name != rootProject.name) {
         plugins {
             greetingsPlugin {
                 id = 'cn.mycommons.mpg'
-                displayName = 'MybatisGeneratorPlugin'
-                description = 'Mybatis generator plugin'
+                displayName = 'MybatisPlusGenerator'
+                description = 'Mybatis plus generator plugin'
                 implementationClass = 'cn.mycommons.mpg.MainPlugin'
             }
         }

@@ -11,26 +11,33 @@ Web开发中使用mybatis比较多，[MyBatis Plus](https://mp.baomidou.com/)是
 
 ![Java CI with Gradle](https://github.com/LiushuiXiaoxia/mybatis-plus-gradle-generator/workflows/Java%20CI%20with%20Gradle/badge.svg)
 
+[Gradle Plugin](https://plugins.gradle.org/plugin/cn.mycommons.mpg)
+
 # 使用姿势
 
-本插件需要结合Spring Boot项目一起使用，如下所示，首先添加插件依赖，当前版本为
-[ ![Download](https://api.bintray.com/packages/liushuixiaoxia/maven/mpg/images/download.svg) ](https://bintray.com/liushuixiaoxia/maven/mpg/_latestVersion)
+本插件需要结合Spring Boot项目一起使用，如下所示，首先添加插件依赖，当前版本为`3.4.2.0`
+
+```groovy
+plugins {
+    id "cn.mycommons.mpg" version "3.4.2.0"
+}
+```
+
+或
 
 ```groovy
 buildscript {
-    ext {
-        springBootVersion = '2.1.1.RELEASE'
-        mpgVesion = ''
-    }
     repositories {
-        mavenCentral()
-        jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath("cn.mycommons:mpg:${mpgVesion}")
+        classpath "cn.mycommons:buildSrc:3.4.2.0"
     }
 }
+
+apply plugin: "cn.mycommons.mpg"
 ```
 
 然后配置相关属性即可，本配置可以参考[MyBatis Plus 代码生成官方文档](https://mp.baomidou.com/guide/generator.html) ，基本配置和官方配置一样。
@@ -38,7 +45,9 @@ buildscript {
 示例：表名为`tb_app_info`，前缀为`tb_`，生成的entity为`AppInfo`,mapper为`AppInfoMapper.xml`。
 
 ```groovy
-apply plugin: 'mpg'
+plugins {
+    id "cn.mycommons.mpg" version "3.4.2.0"
+}
 mpg {
     enable = true
 
@@ -109,4 +118,6 @@ xmlMapperConfig {
 
 [MyBatis Plus 文档](https://mp.baomidou.com/config/)
 
-[MyBatis Plus Gradle Plugin](https://github.com/LiushuiXiaoxia/mybatis-plus-gradle-generator)
+[MyBatis Plus Gradle Plugin Github](https://github.com/LiushuiXiaoxia/mybatis-plus-gradle-generator)
+
+[Gradle Plugin](https://plugins.gradle.org/plugin/cn.mycommons.mpg)

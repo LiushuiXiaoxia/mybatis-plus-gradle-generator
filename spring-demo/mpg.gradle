@@ -1,4 +1,5 @@
 apply plugin: 'mpg'
+apply plugin: "cn.mycommons.mpg"
 mpg {
     enable = true
 
