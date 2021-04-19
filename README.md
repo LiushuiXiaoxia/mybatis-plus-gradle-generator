@@ -15,15 +15,19 @@ Web开发中使用mybatis比较多，[MyBatis Plus](https://mp.baomidou.com/)是
 
 # 使用姿势
 
-本插件需要结合Spring Boot项目一起使用，如下所示，首先添加插件依赖，当前版本为`3.4.2.0`
+本插件需要结合Spring Boot项目一起使用，如下所示，首先添加插件依赖，当前版本为`3.4.2.1`
+
+新版本
 
 ```groovy
 plugins {
-    id "cn.mycommons.mpg" version "3.4.2.0"
+    id "cn.mycommons.mpg" version "${version}"
 }
 ```
 
 或
+
+老版本
 
 ```groovy
 buildscript {
@@ -33,7 +37,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath "cn.mycommons:buildSrc:3.4.2.0"
+        classpath "cn.mycommons:buildSrc:${version}"
     }
 }
 
@@ -46,8 +50,11 @@ apply plugin: "cn.mycommons.mpg"
 
 ```groovy
 plugins {
-    id "cn.mycommons.mpg" version "3.4.2.0"
+    id "cn.mycommons.mpg" version "${version}"
 }
+
+// apply plugin: "cn.mycommons.mpg" // 老版本
+
 mpg {
     enable = true
 
